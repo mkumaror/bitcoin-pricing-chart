@@ -3,11 +3,11 @@ class DashboardController < ApplicationController
   end
 
   def chart_data
-  	data = {}
-  	Pricing.all.each {|p| data = data.merge(p.data) }
-  	data = Hash[data.sort_by {|k, v| k.to_i }]
-  	
-  	csv_contents = CSV.generate do |csv|
+    data = {}
+    Pricing.all.each {|p| data = data.merge(p.data) }
+    data = Hash[data.sort_by {|k, v| k.to_i }]
+
+    csv_contents = CSV.generate do |csv|
       csv << ['Time', 'Price($)', 'Market Cap($)']
       
       data.each do |k, obj| 
